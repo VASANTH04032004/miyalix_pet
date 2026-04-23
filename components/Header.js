@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Platform, TouchableOpacity, TextInput } from 'react-native';
 import { COLORS, SIZES, SHADOWS } from '../constants/theme';
 
-const Header = () => {
+const Header = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -25,6 +25,9 @@ const Header = () => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton}>
           <Text style={styles.iconText}>🛒</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation?.navigate('Login')}>
+          <Text style={styles.iconText}>👤</Text>
         </TouchableOpacity>
       </View>
     </View>
