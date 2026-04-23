@@ -1,39 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, ScrollView, Platform } from 'react-native';
-import Header from './components/Header';
-import HeroBanner from './components/HeroBanner';
-import CategoryList from './components/CategoryList';
-import FeaturedProducts from './components/FeaturedProducts';
+import { StyleSheet, View } from 'react-native';
+import { NativeRouter, Route, Routes } from 'react-router-native';
+import Home from './screens/Home';
+import Create from './screens/Create';
+import CategoryDetail from './screens/CategoryDetail';
 import { COLORS } from './constants/theme';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
-        <HeroBanner />
-        <CategoryList />
-        <FeaturedProducts />
-        {/* Additional padding for bottom spacing */}
-        <View style={{ height: 100 }} />
-      </ScrollView>
-      <StatusBar style="auto" />
-    </View>
+    <NativeRouter>
+      <View style={styles.appWrapper}>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/category/:id" element={<CategoryDetail />} />
+        </Routes>
+        <StatusBar style="auto" />
+      </View>
+    </NativeRouter>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appWrapper: {
     flex: 1,
     backgroundColor: COLORS.background,
-    ...(Platform.OS === 'web' && {
-      // Create a nice responsive container on web to simulate a max-width wrapper
-      marginHorizontal: 'auto',
-      width: '100%',
-      maxWidth: 1440,
-    }),
-  },
-  scrollContainer: {
-    flexGrow: 1,
   }
 });
