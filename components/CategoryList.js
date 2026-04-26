@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform } from 'react-native';
-import { useNavigate } from 'react-router-native';
+
 import { COLORS, SIZES, SHADOWS } from '../constants/theme';
 
 const CATEGORIES = [
@@ -11,9 +11,8 @@ const CATEGORIES = [
   { id: '5', title: 'Home', image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&q=80' },
 ];
 
-const CategoryList = () => {
-  const navigate = useNavigate();
-
+const CategoryList = ({ navigation }) => {
+  
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Shop by Category</Text>
@@ -23,7 +22,7 @@ const CategoryList = () => {
             key={item.id} 
             style={styles.categoryCard}
             activeOpacity={0.8}
-            onPress={() => navigate(`/category/${item.id}`)}
+            onPress={() => navigation.navigate('CategoryDetail', { categoryId: item.id, categoryTitle: item.title })}
           >
             <View style={styles.imageContainer}>
               <Image source={{ uri: item.image }} style={styles.image} />

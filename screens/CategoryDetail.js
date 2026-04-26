@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import { useParams, useNavigate } from 'react-router-native';
 import { COLORS, SIZES, SHADOWS } from '../constants/theme';
 
 const DUMMY_PRODUCTS = {
@@ -34,17 +33,16 @@ const CATEGORY_NAMES = {
   '5': 'Home',
 };
 
-export default function CategoryDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+export default function CategoryDetail({ route, navigation }) {
+  const { categoryId, categoryTitle } = route.params || {};
 
-  const products = DUMMY_PRODUCTS[id] || [];
-  const categoryName = CATEGORY_NAMES[id] || 'Category';
+  const products = DUMMY_PRODUCTS[categoryId] || [];
+  const categoryName = categoryTitle || CATEGORY_NAMES[categoryId] || 'Category';
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigate('/')} style={styles.backButton}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Text style={styles.backButtonText}>← Back</Text>
         </TouchableOpacity>
         <Text style={styles.title}>{categoryName} Products</Text>
