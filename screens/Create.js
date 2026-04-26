@@ -1,17 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { useNavigate } from 'react-router-native';
 import { COLORS, SIZES } from '../constants/theme';
 
-export default function Create() {
-  const navigate = useNavigate();
-
+export default function Create({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Page</Text>
       <Text style={styles.subtitle}>This is a placeholder UI for the /create route.</Text>
       
-      <TouchableOpacity style={styles.button} onPress={() => navigate('/')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
         <Text style={styles.buttonText}>Go Back Home</Text>
       </TouchableOpacity>
     </View>

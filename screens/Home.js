@@ -6,13 +6,13 @@ import CategoryList from '../components/CategoryList';
 import FeaturedProducts from '../components/FeaturedProducts';
 import { COLORS } from '../constants/theme';
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         <HeroBanner />
-        <CategoryList />
+        <CategoryList navigation={navigation} />
         <FeaturedProducts />
         {/* Additional padding for bottom spacing */}
         <View style={{ height: 100 }} />
