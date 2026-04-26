@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform } from 'react-native';
+import { useNavigate } from 'react-router-native';
 import { COLORS, SIZES, SHADOWS } from '../constants/theme';
 
 const CATEGORIES = [
-  { id: '1', title: 'Dog Food', image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400&q=80' },
-  { id: '2', title: 'Cat Toys', image: 'https://images.unsplash.com/photo-1615266895738-11f1371cd7e5?w=400&q=80' },
-  { id: '3', title: 'Grooming', image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&q=80' },
-  { id: '4', title: 'Bedding', image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&q=80' },
-  { id: '5', title: 'Apparel', image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&q=80' },
+  { id: '1', title: 'Food', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80' },
+  { id: '2', title: 'Travel', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80' },
+  { id: '3', title: 'Fashion', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&q=80' },
+  { id: '4', title: 'Tech', image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&q=80' },
+  { id: '5', title: 'Home', image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&q=80' },
 ];
 
 const CategoryList = () => {
+  const navigate = useNavigate();
+
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Shop by Category</Text>
@@ -20,6 +23,7 @@ const CategoryList = () => {
             key={item.id} 
             style={styles.categoryCard}
             activeOpacity={0.8}
+            onPress={() => navigate(`/category/${item.id}`)}
           >
             <View style={styles.imageContainer}>
               <Image source={{ uri: item.image }} style={styles.image} />
